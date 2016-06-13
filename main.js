@@ -382,6 +382,7 @@ function runSwitch()
 var musicBackground;
 var sfxFire;
 
+/*
 musicBackground = new Howl(
 	  {
 		  urls: ["background.ogg"],
@@ -400,6 +401,7 @@ musicBackground = new Howl(
 				  isSfxPlaying = false;
 			  }
 		  } );
+*/
 
 initialize();
 

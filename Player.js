@@ -112,12 +112,12 @@ Player.prototype.update = function(deltaTime)
 	{
 		this.cooldownTimer -= deltaTime;
 	}
-	if(keyboard.isKeyDown(keyboard.KEY_SPACE)==true&&this.cooldownTimer<=0) {
+	/*if(keyboard.isKeyDown(keyboard.KEY_SPACE)==true&&this.cooldownTimer<=0) {
 		sfxFire.play();
 		this.cooldownTimer = 0.3;
 		score = score + 5;
 	}
-	
+	*/
 	}
 
 	var wasleft = this.velocity.x < 0;
