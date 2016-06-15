@@ -49,6 +49,9 @@ var Player = function() {
 	
 	this.cooldownTimer = 0;
 	
+	this.jetpack = false;
+	this.jumptimer = 0.3;
+	this.fueltimer = 0.5;
 	console.log(LAYER_PLATFORMS)
 	
 
@@ -59,7 +62,12 @@ var Player = function() {
 Player.prototype.update = function(deltaTime)
 {
 	this.sprite.update(deltaTime);
-
+	
+	if(this.jumping == true)
+	{
+		this.jumptimer -= deltaTime;
+	}
+	
 	var left = false;
 	var right = false;
 	var jump = false;
@@ -107,7 +115,7 @@ Player.prototype.update = function(deltaTime)
 			this.sprite.setAnimation(ANIM_JUMP_RIGHT);
 		}
 	
-	if(keyboard.isKeyDown(keyboard.KEY_UP)== true) {
+	if(keyboard.isKeyDown(keyboard.KEY_UP) == true) {
 		jump = true;
 	}
 	if(this.cooldownTimer > 0)
@@ -138,6 +146,17 @@ Player.prototype.update = function(deltaTime)
 		ddx = ddx + ACCEL;
 	else if (wasright)
 		ddx = ddx - FRICTION;
+	
+		if (jump && !falling && jetpack && this.jumptimer <= 0 && this.fueltimer > 0)
+	{
+		this.fueltimer -= deltaTime;
+		console.log("here comes dat boi");
+		ddy = ddy - (GRAVITY * 1.1);
+		if(this.direction == LEFT)
+			this.sprite.setAnimation(ANIM_JUMP_LEFT)
+		else
+			this.sprite.setAnimation(ANIM_JUMP_RIGHT)
+	}
 
 	if (jump && !this.jumping && !falling)
 	{
@@ -148,6 +167,7 @@ Player.prototype.update = function(deltaTime)
 		else
 			this.sprite.setAnimation(ANIM_JUMP_RIGHT)
 	}
+	
 
 
 	this.position.y = Math.floor(this.position.y + (deltaTime * this.velocity.y));
@@ -177,6 +197,9 @@ Player.prototype.update = function(deltaTime)
 			this.velocity.y = 0;
 			this.falling = false;
 			this.jumping = false;
+			this.doubleJump = false;
+			this.jumptimer = 0.3;
+			this.fueltimer = 0.5;
 			ny = 0;
 		}
 	}
@@ -206,6 +229,7 @@ Player.prototype.update = function(deltaTime)
 	{
 		jetpack = true;
 	}
+	console.log(jetpack);
 }
 
 var offsetX = -70;
