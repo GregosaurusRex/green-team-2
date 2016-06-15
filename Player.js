@@ -1,3 +1,5 @@
+var jetpack = false;
+
 var LEFT = 0;
 var RIGHT = 1;
 
@@ -118,9 +120,7 @@ Player.prototype.update = function(deltaTime)
 		score = score + 5;
 	}
 	*/
-	
-	
-	
+
 	}
 
 	var wasleft = this.velocity.x < 0;
@@ -204,9 +204,8 @@ Player.prototype.update = function(deltaTime)
 	
 	if(cellAtTileCoord(LAYER_OBJECT_TRIGGERS, tx, ty) == true)
 	{
-		
+		jetpack = true;
 	}
-	
 }
 
 var offsetX = -70;
