@@ -151,7 +151,6 @@ Player.prototype.update = function(deltaTime)
 	{
 		this.fueltimer -= deltaTime;
 		console.log("here comes dat boi");
-		ddy = ddy - (GRAVITY * 1.1);
 		if(this.direction == LEFT)
 			this.sprite.setAnimation(ANIM_JUMP_LEFT)
 		else
