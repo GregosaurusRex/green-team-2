@@ -118,6 +118,9 @@ Player.prototype.update = function(deltaTime)
 		score = score + 5;
 	}
 	*/
+	
+	
+	
 	}
 
 	var wasleft = this.velocity.x < 0;

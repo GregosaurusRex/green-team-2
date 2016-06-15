@@ -82,6 +82,25 @@ var JUMP = METER * 2500;
 
 var cells = [];
 function initialize() {
+		
+	cells[LAYER_OBJECT_TRIGGERS] = [];
+	idx = 0;
+	for(var y = 0; y < level1.layers[LAYER_OBJECT_TRIGGERS].height; y++) {
+		cells[LAYER_OBJECT_TRIGGERS][y] = [];
+		for(var x = 0; x < level1.layers[LAYER_OBJECT_TRIGGERS].width; x++) {
+			if(level1.layers[LAYER_OBJECT_TRIGGERS].data[idx] != 0) {
+				cells[LAYER_OBJECT_TRIGGERS][y][x] = 1;
+				cells[LAYER_OBJECT_TRIGGERS][y-1][x] = 1;
+				cells[LAYER_OBJECT_TRIGGERS][y-1][x+1] = 1;
+				cells[LAYER_OBJECT_TRIGGERS][y][x+1] = 1;
+			}
+			else if(cells[LAYER_OBJECT_TRIGGERS][y][x] != 1) {
+				cells[LAYER_OBJECT_TRIGGERS][y][x] = 0;
+			}
+			idx++;
+		}
+	}
+	
 	for(var layerIdx = 0; layerIdx < LAYER_COUNT; layerIdx++) {
 		cells[layerIdx] = [];
 		var idx = 0;
@@ -406,24 +425,6 @@ musicBackground = new Howl(
 initialize();
 
 (function() {
-	
-	cells[LAYER_OBJECT_TRIGGERS] = [];
-	idx = 0;
-	for(var y = 0; y < level1.layers[LAYER_OBJECT_TRIGGERS].height; y++) {
-		cells[LAYER_OBJECT_TRIGGERS][y] = [];
-		for(var x = 0; x < level1.layers[LAYER_OBJECT_TRIGGERS].width; x++) {
-			if(level1.layers[LAYER_OBJECT_TRIGGERS].data[idx] != 0) {
-				cells[LAYER_OBJECT_TRIGGERS][y][x] = 1;
-				cells[LAYER_OBJECT_TRIGGERS][y-1][x] = 1;
-				cells[LAYER_OBJECT_TRIGGERS][y-1][x+1] = 1;
-				cells[LAYER_OBJECT_TRIGGERS][y][x+1] = 1;
-			}
-			else if(cells[LAYER_OBJECT_TRIGGERS][y][x] != 1) {
-				cells[LAYER_OBJECT_TRIGGERS][y][x] = 0;
-			}
-			idx++;
-		}
-	}
 	
   var onEachFrame;
   if (window.requestAnimationFrame) {
