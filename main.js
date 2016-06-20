@@ -42,6 +42,8 @@ var fpsTime = 0;
 var chuckNorris = document.createElement("img");
 chuckNorris.src = "hero.png";
 
+var exclamationbox = document.createElement("img");
+exclamationbox = "Exclamation Box.png";
 
 var tileset = document.createElement("img");
 tileset.src = "tileset.png";
@@ -211,7 +213,7 @@ function drawMap()
 
 }
 
-var splashTimer = 3;
+var splashTimer = 10;
 function runSplash(deltaTime)
 {
 	splashTimer -= deltaTime;
@@ -221,11 +223,31 @@ function runSplash(deltaTime)
 		return;
 	}
 	
+	context.fillStyle = "#ff9900";
+	context.fillRect(0, 0, 700, 700); 
+	
 	context.fillStyle = "#000";
 	context.font = "24px Arial";
-	context.fillText("You Are About To Play The Best Game Ever", 60, SCREEN_HEIGHT/2);
-	context.font = "12px Arial";
-	context.fillText("Prepare Your Pants", 160, (SCREEN_HEIGHT/2) + 40)
+	context.fillText("You are about to play our game, enjoy!", 65, 20);
+	
+	context.font = "18px Arial";
+	context.fillText("Your goal is to get to the other side of the map and touch the flagpost", 20, 70);
+	context.fillText("To help you, we have given you a jetpack", 100, 120);
+	context.fillText("This jetpack can be located at the", 130, 180);
+	
+	
+	context.fillStyle = "#ffff00";
+	context.fillRect( 242, 205, 50, 50);
+	
+	context.fillStyle = "#000";
+	context.font = "30px Arial";
+	context.fillText("!", (SCREEN_HEIGHT/2), (SCREEN_WIDTH/2) - 80);
+	context.font = "18px Arial";
+	context.fillText("It might be hard, but remember", 135, 300);
+	context.fillText("I believe in you", 200, 320);
+	
+	context.font = "32px Arial";
+	context.fillText("Goodluck!", 185, 450);
 }
 
 
